@@ -181,7 +181,9 @@
     // Supabase Setup (replace with your keys)
    const supabaseUrl = 'https://fkjpuxehflkeseeybzgh.supabase.co';
   const supabaseKey = 'sb_publishable_7sQ_UJLIEz1RBJFSLq22aw_1sbexATl';
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    
+  const { createClient } = supabase;
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
   const products = document.querySelectorAll('.product');
   const totalEl = document.getElementById('total');
@@ -219,7 +221,7 @@
       return;
     }
 
-    const { error } = await supabase.from('orders').insert([{
+    const { error } = await supabaseClient.from('orders').insert([{
       name,
       email,
       message,
@@ -239,4 +241,5 @@
 
 </body>
 </html>
+
 
